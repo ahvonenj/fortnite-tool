@@ -80,9 +80,9 @@ var program = null;
 		
 		var pixelData = this.canvas.getContext('2d').getImageData(randomXoff + 7.5, randomYoff + 7.5, 1, 1).data;
 
-		this.$marker = $('<div/>',
+		var marker = $('<div/>',
 		{
-			class: "fn-marker"
+			class: "fn-marker fn-marker-lg"
 		}).css(
 		{
 			top: (randomYoff + 7.5) + 'px',
@@ -92,7 +92,8 @@ var program = null;
 
 		console.log(pixelData)
 
-		this.$marker.appendTo('body');
+		marker.appendTo('body');
+		setTimeout(function() { marker.removeClass('fn-marker-lg')}, 1)
 	}
 
 	Program.prototype.RandomizeTile = function()
