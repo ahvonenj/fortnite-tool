@@ -125,6 +125,9 @@ var program = null;
 		if(typeof char[dx] === 'undefined')
 			return null;
 
+		if(dy > 10)
+			return null;
+
 		return [char[dx], dy];
 	}
 
