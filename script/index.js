@@ -41,7 +41,8 @@ var program = null;
 		}).css(
 		{
 			top: randomX + 'px',
-			left: randomY + 'px'
+			left: randomY + 'px',
+			"background-color": 'rgb(' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] + ')'
 		});
 		this.$marker.appendTo('body');
 	}
