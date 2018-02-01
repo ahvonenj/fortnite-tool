@@ -24,20 +24,22 @@
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="../index.html">Home</a></li>
 					<li><a href="droppoint.html">Drop point</a></li>
+					<li><a href="#">Rule generator</a></li>
 				</ul>
 			</div>
 		</nav>
 
 		
 			<div class="row">
-				<div class="col s4">
+				<div class="col">
 					<div class="card blue-grey darken-1">
 						<div class="card-image">
-							<img id = "fn-map" src="../res/map3.png">
+							<canvas id = "fn-map" width = "650" height = "650"></canvas>
 						</div>
 						<div class="card-content white-text">
 							<span class="card-title">Randomize a drop point</span>
 							<a class="waves-effect waves-light btn" onclick = "program.RandomizePoint()">Exact</a>
+							<a class="waves-effect waves-light btn" onclick = "program.ClearMarkers()">Clear</a>
 							<!--<a class="waves-effect waves-light btn" onclick = "program.RandomizeTile()">Tile</a>-->
 						</div>
 					</div>
