@@ -21,7 +21,9 @@ var program = null;
 			'I1', 'J1', 'J2', 'A7', 'A8',
 			'B8', 'A9', 'B9', 'C9', 'J9',
 			'A10', 'B10', 'C10', 'E10',
-			'H10','I10', 'J10', 'A2'
+			'H10','I10', 'J10', 'A2',
+			'J8', 'J3', 'A3', 'A4', 'C8',
+			'D10'
 		];
 	}
 
@@ -57,7 +59,8 @@ var program = null;
 		randomXoff = randomX + offX;
 		randomYoff = randomY + offY;
 
-		while(this.tileBlacklist.indexOf(this.PointInWhichTile(randomXoff, randomYoff).join('')) > -1)
+		while(this.PointInWhichTile(randomXoff, randomYoff) === null || 
+			  this.tileBlacklist.indexOf(this.PointInWhichTile(randomXoff, randomYoff).join('')) > -1)
 		{
 			var randomX = chance.integer(
 			{
@@ -87,6 +90,8 @@ var program = null;
 			"background-color": 'rgb(' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] + ')'*/
 		});
 
+		console.log(pixelData)
+
 		this.$marker.appendTo('body');
 	}
 
@@ -115,6 +120,9 @@ var program = null;
 		var dy = Math.floor((y / tile)) + 1;
 
 		console.log(char[dx], dy)
+
+		if(typeof char[dx] === 'undefined')
+			return null;
 
 		return [char[dx], dy];
 	}
