@@ -13,6 +13,16 @@ var program = null;
 		this.mapTileRatio = this.mapOriginalWidth / this.mapOriginalTile;
 
 		this.$marker = null;
+		this.canvas = null;
+
+		this.tileBlacklist = 
+		[
+			'A1', 'E1', 'F1', 'G1', 'H1',
+			'I1', 'J1', 'J2', 'A7', 'A8',
+			'B8', 'A9', 'B9', 'C9', 'J9',
+			'A10', 'B10', 'C10', 'E10',
+			'H10','I10', 'J10', 'A2'
+		];
 	}
 
 	Program.prototype.RandomizePoint = function()
@@ -24,26 +34,59 @@ var program = null;
 		var pad = width / this.mapPadRatio;
 		var tile = width / this.mapTileRatio;
 
-		var randomX = Math.floor(Math.random() * (width - offX - pad)) + offX + pad;
-		var randomY = Math.floor(Math.random() * (width - offY - pad)) + offY + pad;
+		if(this.canvas === null)
+		{
+			this.canvas = document.createElement('canvas');
+			this.canvas.width = width + offX;
+			this.canvas.height = height + offY;
+			this.canvas.getContext('2d').drawImage(this.$map[0], offX, offY, width, height);
+		}
 
-		var canvas = document.createElement('canvas');
-		canvas.width = width;
-		canvas.height = height;
-		canvas.getContext('2d').drawImage(this.$map[0], 0, 0, width, height);
-		var pixelData = canvas.getContext('2d').getImageData(randomX, randomY, 1, 1).data;
+		var randomX = chance.integer(
+		{
+			min: pad,
+			max: width - pad * 2
+		});
 
-		console.log(pixelData)
+		var randomY = chance.integer(
+		{
+			min: pad,
+			max: height - pad * 2
+		});
+
+		randomXoff = randomX + offX;
+		randomYoff = randomY + offY;
+
+		while(this.tileBlacklist.indexOf(this.PointInWhichTile(randomXoff, randomYoff).join('')) > -1)
+		{
+			var randomX = chance.integer(
+			{
+				min: pad,
+				max: width - pad * 2
+			});
+
+			var randomY = chance.integer(
+			{
+				min: pad,
+				max: height - pad * 2
+			});
+
+			randomXoff = randomX + offX;
+			randomYoff = randomY + offY;
+		}
+		
+		var pixelData = this.canvas.getContext('2d').getImageData(randomXoff + 7.5, randomYoff + 7.5, 1, 1).data;
 
 		this.$marker = $('<div/>',
 		{
 			class: "fn-marker"
 		}).css(
 		{
-			top: randomX + 'px',
-			left: randomY + 'px',
-			"background-color": 'rgb(' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] + ')'
+			top: (randomYoff + 7.5) + 'px',
+			left: (randomXoff + 7.5) + 'px'/*,
+			"background-color": 'rgb(' + pixelData[0] + ',' + pixelData[1] + ',' + pixelData[2] + ')'*/
 		});
+
 		this.$marker.appendTo('body');
 	}
 
@@ -51,6 +94,35 @@ var program = null;
 	{
 
 	}
+
+	Program.prototype.PointInWhichTile = function(x, y)
+	{
+		var offX = this.$map.offset().left;
+		var offY = this.$map.offset().top;
+		var width = this.$map.outerWidth();
+		var height = this.$map.outerHeight();
+		var pad = width / this.mapPadRatio;
+		var tile = width / this.mapTileRatio;
+		var char = '0ABCDEFGHIJ'.split('');
+
+		x = x - offX;
+		y = y - offY;
+
+		var tilesX = 10;
+		var tilesY = 10;
+
+		var dx = Math.floor((x / tile)) + 1;
+		var dy = Math.floor((y / tile)) + 1;
+
+		console.log(char[dx], dy)
+
+		return [char[dx], dy];
+	}
+
+	$(document).on('click', function(e)
+	{
+		program.PointInWhichTile(e.clientX, e.clientY)
+	});
 
 	$(document).ready(function()
 	{
