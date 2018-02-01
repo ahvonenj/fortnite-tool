@@ -59,8 +59,11 @@ var program = null;
 		randomXoff = randomX + offX;
 		randomYoff = randomY + offY;
 
-		while(this.PointInWhichTile(randomXoff, randomYoff) === null || 
-			  this.tileBlacklist.indexOf(this.PointInWhichTile(randomXoff, randomYoff).join('')) > -1)
+		var pixelData = this.canvas.getContext('2d').getImageData(randomXoff + 7.5, randomYoff + 7.5, 1, 1).data;
+
+		/*while(this.PointInWhichTile(randomXoff, randomYoff) === null || 
+			  this.tileBlacklist.indexOf(this.PointInWhichTile(randomXoff, randomYoff).join('')) > -1)*/
+		while(pixelData[3] < 255)
 		{
 			var randomX = chance.integer(
 			{
@@ -76,9 +79,11 @@ var program = null;
 
 			randomXoff = randomX + offX;
 			randomYoff = randomY + offY;
+
+			pixelData = this.canvas.getContext('2d').getImageData(randomXoff + 7.5, randomYoff + 7.5, 1, 1).data;
 		}
 		
-		var pixelData = this.canvas.getContext('2d').getImageData(randomXoff + 7.5, randomYoff + 7.5, 1, 1).data;
+		
 
 		var marker = $('<div/>',
 		{
