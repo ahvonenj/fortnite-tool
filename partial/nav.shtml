@@ -1,9 +1,0 @@
-<nav>
-	<div class="nav-wrapper">
-		<a href="#" class="brand-logo right">Fortnite Tool</a>
-		<ul id="nav-mobile" class="left hide-on-med-and-down">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="pages/droppoint.html">Drop point</a></li>
-		</ul>
-	</div>
-</nav>
