@@ -14,6 +14,8 @@ var rulegen = null;
 
 		this.seededRng = null;
 
+		this.pickedRules = [];
+
 		this.template_substitutions =
 		[
 			"{name}",
@@ -54,16 +56,30 @@ var rulegen = null;
 		});
 	}
 
-	RuleGenerator.prototype.GenerateRule = function(seed)
+	RuleGenerator.prototype.GenerateRule = function(picked)
 	{
-		var handmadeOrTemplate = chance.bool();
+		var handmade = this.seededRng.bool();
+
+		var picked = picked || [];
+
+		if(handmade)
+		{
+			var pick = this.PickFrom(this.fn_entities.handmade_rules);
+			return 
+		}
+		else
+		{
+			return this.ParseTemplate(this.PickFrom(this.fn_entities.template_rules));
+		}
 	}
 
 	RuleGenerator.prototype.GenerateRuleset = function(hash)
 	{
+		this.pickedRules = [];
+		
 		if(typeof hash === 'undefined')
 		{
-			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates);
+			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates)[0];
 			var rule_name = this.ParseTemplate(rule_name_template);
 			var rule_hash = this.Hash(rule_name);
 
@@ -72,9 +88,18 @@ var rulegen = null;
 
 			var num_rules = this.seededRng.integer({ min: 1, max:  6});
 
+			var ruleset = [];
+
+			for(var i = 0; i < num_rules; i++)
+			{
+				ruleset.push(this.GenerateRule());
+			}
+
 			console.log(rule_name_template + ' => ' + rule_name + ' (' + rule_hash + ')');
 			console.log(rule_name);
 			console.log(rule_hash, num_rules);
+
+			console.log(ruleset);
 		}
 		else
 		{
@@ -110,7 +135,12 @@ var rulegen = null;
 
 	RuleGenerator.prototype.PickFrom = function(set)
 	{
-		return set[chance.integer({ min: 0, max: set.length - 1 })];
+		if(this.seededRng)
+			var pick = this.seededRng.integer({ min: 0, max: set.length - 1 });
+		else
+			var pick = chance.integer({ min: 0, max: set.length - 1 });
+
+		return [set[pick], set, pick];
 	}
 
 	RuleGenerator.prototype.ParseTemplate = function(template)
@@ -147,7 +177,7 @@ var rulegen = null;
 						break;
 
 					default:
-						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw]));
+						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw])[0]);
 						break;
 				}
 			}

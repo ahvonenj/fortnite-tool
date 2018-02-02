@@ -153,30 +153,108 @@
 		"Metal"
 	],
 
+	"rule_groups":
+	{
+		"0":
+		{
+			"name": "Spawn control group"
+		},
+
+		"1":
+		{
+			"name": "Resurrection control group"
+		}
+	},
+
 	"handmade_rules":
 	[
-		"Player(s) must jump off the bus straight away",
-		"Player(s) must stay on the bus as long a possible",
-		"Player(s) cannot begin from any named location",
-		"Player(s) must crouch at all times",
-		"Player(s) cannot kill knocked down players",
-		"Player(s) must leave downed teammates behind",
-		"If a player get knocked, player must drop and leave all of their items",
-		"All players start from different locations"
+		{ 
+			"rule": "Player(s) must jump off the bus straight away",
+			"group": 0,
+			"limit": 1
+		},
+		{ 
+			"rule": "Player(s) must stay on the bus as long a possible" ,
+			"group": 0,
+			"limit": 1
+		},
+		{ 
+			"rule": "Player(s) cannot begin from any named location",
+			"group": 0,
+			"limit": 1
+		},
+		{ 
+			"rule": "Player(s) must crouch at all times" ,
+			"limit": 1
+		},
+		{ 
+			"rule": "Player(s) cannot kill knocked down players" ,
+			"limit": 1
+		},
+		{ 
+			"rule": "Player(s) must leave downed teammates behind" ,
+			"group": 1,
+			"limit": 1
+		},
+		{ 
+			"rule": "If a player get knocked and resurrected, player must drop and leave all of their items" ,
+			"group": 1,
+			"limit": 1
+		},
+		{ 
+			"rule": "All players start from different locations",
+			"group": 0,
+			"limit": 1
+		}
 	],
 
 	"template_rules":
 	[
-		"Player(s) must emote after {n} kill(s)",
-		"Player(s) can only resurrect another player {n1} time(s)",
-		"Player(s) cannot use {weapons}",
-		"Player(s) cannot use {rarities} grade {weapons}",
-		"Player(s) cannot use {consumables}",
-		"Player(s) cannot use {placeables}",
-		"Player(s) cannot build {buildings}s",
-		"Player(s) cannot use {resources}",
-		"Player(s) must start from {places}",
-		"Player(s) can only carry a maximum of {n1} items at a time",
-		"Player(s) can only build a maximum of {n1} height buildings"
+		{
+		 	"rule": "Player(s) must emote after {n} kill(s)",
+		 	"limit": 1
+		},
+		{
+		 	"rule": "Player(s) can only resurrect another player {n1} time(s)" ,
+			"group": 1,
+			"limit": 1
+		},
+		{
+		 	"rule": "Player(s) cannot use {weapons}",
+		 	"limit": 4
+		},
+		{
+		 	"rule": "Player(s) cannot use {rarities} grade {weapons}",
+		 	"limit": 2
+		},
+		{
+		 	"rule": "Player(s) cannot use {consumables}",
+		 	"limit": 3
+		},
+		{
+		 	"rule": "Player(s) cannot use {placeables}",
+		 	"limit": 2
+		},
+		{
+		 	"rule": "Player(s) cannot build {buildings}s",
+		 	"limit": 3
+		},
+		{
+		 	"rule": "Player(s) cannot use {resources}",
+		 	"limit": 2
+		},
+		{
+		 	"rule": "Player(s) must start from {places}",
+		 	"group": 0,
+			"limit": 1
+		},
+		{
+		 	"rule": "Player(s) can only carry a maximum of {n1} items at a time",
+			"limit": 1
+		},
+		{ 
+			"rule": "Player(s) can only build a maximum of {n1} height buildings",
+			"limit": 1
+		}
 	]
 }
