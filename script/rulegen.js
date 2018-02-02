@@ -71,7 +71,7 @@ var rulegen = null;
 		else
 		{
 			var pick = this.PickFrom(this.fn_entities.template_rules);
-			pick.rule = this.ParseTemplate(pick.rule);
+			pick.rule = this.ParseTemplate(pick.rule, true);
 			return pick;
 		}
 	}
@@ -109,7 +109,7 @@ var rulegen = null;
 		if(typeof hash === 'undefined')
 		{
 			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates, true);
-			var rule_name = this.ParseTemplate(rule_name_template);
+			var rule_name = this.ParseTemplate(rule_name_template, false);
 			var rule_hash = this.Hash(rule_name);
 
 			// Seed further generation with hash
@@ -175,7 +175,7 @@ var rulegen = null;
 
 	RuleGenerator.prototype.PickFrom = function(set, forceNoSeed)
 	{
-		if(this.seededRng && (typeof forceNoSeed === 'undefined'  || forceNoSeed === false))
+		if(this.seededRng !== null && (typeof forceNoSeed === 'undefined'  || forceNoSeed === false))
 			var pick = this.seededRng.integer({ min: 0, max: set.length - 1 });
 		else
 			var pick = chance.integer({ min: 0, max: set.length - 1 });
@@ -183,7 +183,7 @@ var rulegen = null;
 		return set[pick];
 	}
 
-	RuleGenerator.prototype.ParseTemplate = function(template)
+	RuleGenerator.prototype.ParseTemplate = function(template, useSeed)
 	{
 		for(var i = 0; i < this.template_substitutions.length; i++)
 		{
@@ -217,7 +217,7 @@ var rulegen = null;
 						break;
 
 					default:
-						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw]));
+						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw], useSeed));
 						break;
 				}
 			}
