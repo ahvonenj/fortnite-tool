@@ -108,7 +108,7 @@ var rulegen = null;
 
 		if(typeof hash === 'undefined')
 		{
-			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates);
+			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates, true);
 			var rule_name = this.ParseTemplate(rule_name_template);
 			var rule_hash = this.Hash(rule_name);
 
