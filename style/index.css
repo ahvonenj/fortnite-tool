@@ -25,3 +25,8 @@
 	transition: all 600ms linear;
 	opacity: 0.5;
 }
+
+#rule-collection
+{
+	min-height: 329px;
+}
