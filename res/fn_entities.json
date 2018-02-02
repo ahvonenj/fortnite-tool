@@ -219,7 +219,7 @@
 	"template_rules":
 	[
 		{
-		 	"rule": "Player(s) must emote after {n} kill(s)",
+		 	"rule": "Player(s) must emote after {n1} kill(s)",
 		 	"rule_id": "t1",
 		 	"limit": 1
 		},
