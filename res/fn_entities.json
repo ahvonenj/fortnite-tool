@@ -170,39 +170,47 @@
 	[
 		{ 
 			"rule": "Player(s) must jump off the bus straight away",
+			"rule_id": "h0",
 			"group": 0,
 			"limit": 1
 		},
 		{ 
-			"rule": "Player(s) must stay on the bus as long a possible" ,
+			"rule": "Player(s) must stay on the bus as long a possible",
+			"rule_id": "h1",
 			"group": 0,
 			"limit": 1
 		},
 		{ 
 			"rule": "Player(s) cannot begin from any named location",
+			"rule_id": "h2",
 			"group": 0,
 			"limit": 1
 		},
 		{ 
-			"rule": "Player(s) must crouch at all times" ,
+			"rule": "Player(s) must crouch at all times",
+			"rule_id": "h3",
 			"limit": 1
 		},
 		{ 
-			"rule": "Player(s) cannot kill knocked down players" ,
+			"rule": "Player(s) cannot kill knocked down players",
+			"rule_id": "h4",
 			"limit": 1
 		},
 		{ 
-			"rule": "Player(s) must leave downed teammates behind" ,
+			"rule": "Player(s) must leave downed teammates behind",
+			"rule_id": "h5",
 			"group": 1,
 			"limit": 1
 		},
 		{ 
-			"rule": "If a player get knocked and resurrected, player must drop and leave all of their items" ,
+			"rule": "If a player get knocked and resurrected, player must drop and leave all of their items",
+			"rule_id": "h6",
 			"group": 1,
 			"limit": 1
 		},
 		{ 
 			"rule": "All players start from different locations",
+			"rule_id": "h7",
 			"group": 0,
 			"limit": 1
 		}
@@ -212,48 +220,59 @@
 	[
 		{
 		 	"rule": "Player(s) must emote after {n} kill(s)",
+		 	"rule_id": "t1",
 		 	"limit": 1
 		},
 		{
-		 	"rule": "Player(s) can only resurrect another player {n1} time(s)" ,
+		 	"rule": "Player(s) can only resurrect another player {n1} time(s)",
+		 	"rule_id": "t2",
 			"group": 1,
 			"limit": 1
 		},
 		{
 		 	"rule": "Player(s) cannot use {weapons}",
+		 	"rule_id": "t3",
 		 	"limit": 4
 		},
 		{
 		 	"rule": "Player(s) cannot use {rarities} grade {weapons}",
+		 	"rule_id": "t4",
 		 	"limit": 2
 		},
 		{
 		 	"rule": "Player(s) cannot use {consumables}",
+		 	"rule_id": "t5",
 		 	"limit": 3
 		},
 		{
 		 	"rule": "Player(s) cannot use {placeables}",
+		 	"rule_id": "t6",
 		 	"limit": 2
 		},
 		{
 		 	"rule": "Player(s) cannot build {buildings}s",
+		 	"rule_id": "t7",
 		 	"limit": 3
 		},
 		{
 		 	"rule": "Player(s) cannot use {resources}",
+		 	"rule_id": "t8",
 		 	"limit": 2
 		},
 		{
 		 	"rule": "Player(s) must start from {places}",
+		 	"rule_id": "t9",
 		 	"group": 0,
 			"limit": 1
 		},
 		{
 		 	"rule": "Player(s) can only carry a maximum of {n1} items at a time",
+		 	"rule_id": "t10",
 			"limit": 1
 		},
 		{ 
 			"rule": "Player(s) can only build a maximum of {n1} height buildings",
+			"rule_id": "t11",
 			"limit": 1
 		}
 	]

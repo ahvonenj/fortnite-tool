@@ -14,8 +14,6 @@ var rulegen = null;
 
 		this.seededRng = null;
 
-		this.pickedRules = [];
-
 		this.template_substitutions =
 		[
 			"{name}",
@@ -56,30 +54,56 @@ var rulegen = null;
 		});
 	}
 
-	RuleGenerator.prototype.GenerateRule = function(picked)
+	RuleGenerator.prototype.GenerateRule = function(handmade)
 	{
-		var handmade = this.seededRng.bool();
-
-		var picked = picked || [];
-
 		if(handmade)
 		{
 			var pick = this.PickFrom(this.fn_entities.handmade_rules);
-			return 
+			return pick;
 		}
 		else
 		{
-			return this.ParseTemplate(this.PickFrom(this.fn_entities.template_rules));
+			var pick = this.PickFrom(this.fn_entities.template_rules);
+			pick.rule = this.ParseTemplate(pick.rule);
+			return pick;
 		}
+	}
+
+	RuleGenerator.prototype.ValidateRule = function(rule, ruleset)
+	{
+		if(ruleset.length === 0)
+			return true;
+
+		var sameid_rules = ruleset.filter(r => r.rule_id === rule.rule_id)
+		var num_sameid_rules = sameid_rules.length;
+
+		console.log('id', num_sameid_rules, rule.limit);
+
+		if(num_sameid_rules >= rule.limit)
+			return false;
+
+		if(ruleset.map(r => r.rule).indexOf(rule.rule) > -1)
+			return false;
+
+		if(typeof rule.group === 'undefined')
+			return true;
+
+		var samegroup_rules = ruleset.filter(r => r.group === rule.group);
+		var num_samegroup_rules = samegroup_rules.length;
+
+		console.log('grp', num_samegroup_rules)
+
+		if(num_samegroup_rules >= 1)
+			return false;
+
+		return true;
 	}
 
 	RuleGenerator.prototype.GenerateRuleset = function(hash)
 	{
-		this.pickedRules = [];
-		
 		if(typeof hash === 'undefined')
 		{
-			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates)[0];
+			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates);
 			var rule_name = this.ParseTemplate(rule_name_template);
 			var rule_hash = this.Hash(rule_name);
 
@@ -92,12 +116,21 @@ var rulegen = null;
 
 			for(var i = 0; i < num_rules; i++)
 			{
-				ruleset.push(this.GenerateRule());
+				var handmade = this.seededRng.bool();
+				var rule = this.GenerateRule(handmade);
+
+				while(this.ValidateRule(rule, ruleset) === false)
+				{
+					handmade = this.seededRng.bool();
+					rule = this.GenerateRule(handmade);
+				}
+
+				ruleset.push(rule);
 			}
 
-			console.log(rule_name_template + ' => ' + rule_name + ' (' + rule_hash + ')');
+			/*console.log(rule_name_template + ' => ' + rule_name + ' (' + rule_hash + ')');
 			console.log(rule_name);
-			console.log(rule_hash, num_rules);
+			console.log(rule_hash, num_rules);*/
 
 			console.log(ruleset);
 		}
@@ -140,7 +173,7 @@ var rulegen = null;
 		else
 			var pick = chance.integer({ min: 0, max: set.length - 1 });
 
-		return [set[pick], set, pick];
+		return set[pick];
 	}
 
 	RuleGenerator.prototype.ParseTemplate = function(template)
@@ -177,7 +210,7 @@ var rulegen = null;
 						break;
 
 					default:
-						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw])[0]);
+						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw]));
 						break;
 				}
 			}
