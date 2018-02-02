@@ -77,8 +77,6 @@ var rulegen = null;
 		var sameid_rules = ruleset.filter(r => r.rule_id === rule.rule_id)
 		var num_sameid_rules = sameid_rules.length;
 
-		console.log('id', num_sameid_rules, rule.limit);
-
 		if(num_sameid_rules >= rule.limit)
 			return false;
 
@@ -90,8 +88,6 @@ var rulegen = null;
 
 		var samegroup_rules = ruleset.filter(r => r.group === rule.group);
 		var num_samegroup_rules = samegroup_rules.length;
-
-		console.log('grp', num_samegroup_rules)
 
 		if(num_samegroup_rules >= 1)
 			return false;
