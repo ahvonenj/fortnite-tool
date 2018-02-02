@@ -174,8 +174,9 @@
 		"Player(s) cannot use {consumables}",
 		"Player(s) cannot use {placeables}",
 		"Player(s) cannot build {buildings}s",
-		"Players cannot use {resources}",
+		"Player(s) cannot use {resources}",
 		"Player(s) must start from {places}",
-		"Player(s) can only carry a maximum of {n1} items at a time"
+		"Player(s) can only carry a maximum of {n1} items at a time",
+		"Player(s) can only build a maximum of {n1} height buildings"
 	]
 }

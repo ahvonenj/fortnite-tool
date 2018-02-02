@@ -10,6 +10,7 @@ var rulegen = null;
 
 		this.nMax = 3;
 		this.n1Max = 3;
+		this.rulesMax = 6;
 
 		this.seededRng = null;
 
@@ -58,19 +59,31 @@ var rulegen = null;
 		var handmadeOrTemplate = chance.bool();
 	}
 
-	RuleGenerator.prototype.GenerateRuleset = function()
+	RuleGenerator.prototype.GenerateRuleset = function(hash)
 	{
-		var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates);
-		var rule_name = this.ParseTemplate(rule_name_template);
-		var rule_hash = this.Hash(rule_name);
-		var rule_hash2 = this.Hash(rule_name);
+		if(typeof hash === 'undefined')
+		{
+			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates);
+			var rule_name = this.ParseTemplate(rule_name_template);
+			var rule_hash = this.Hash(rule_name);
 
-		// Seed further generation with hash
-		this.seededRng = new Chance(rule_hash);
+			// Seed further generation with hash
+			this.seededRng = new Chance(rule_hash);
 
+			var num_rules = this.seededRng.integer({ min: 1, max:  6});
 
-		//console.log(rule_name_template + ' => ' + rule_name + ' (' + rule_hash + '|' + rule_hash2 + ')');
-		console.log(rule_name)
+			console.log(rule_name_template + ' => ' + rule_name + ' (' + rule_hash + ')');
+			console.log(rule_name);
+			console.log(rule_hash, num_rules);
+		}
+		else
+		{
+			// Seed further generation with hash
+			this.seededRng = new Chance(hash);
+			var num_rules = this.seededRng.integer({ min: 1, max:  6});
+
+			console.log(hash, num_rules)
+		}
 	}
 
 	RuleGenerator.prototype.r = function(min, max)
@@ -106,8 +119,6 @@ var rulegen = null;
 		{
 			var substitution = this.template_substitutions[i];
 			var substitution_raw = substitution.replace('{', '').replace('}', '');
-
-
 
 			while(template.indexOf(substitution) > -1)
 			{
