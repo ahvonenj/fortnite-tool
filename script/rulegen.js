@@ -180,50 +180,59 @@ var rulegen = null;
 		else
 			var pick = chance.integer({ min: 0, max: set.length - 1 });
 
-		return set[pick];
+		if(typeof set[pick] === 'object')
+			return $.extend(true, {}, set[pick]);
+		else if(typeof set[pick] === 'string')
+			return (' ' + set[pick]).slice(1);
+		else
+			return set[pick];
 	}
 
 	RuleGenerator.prototype.ParseTemplate = function(template, useSeed)
 	{
+		var ret = (' ' + template).slice(1);
+
 		for(var i = 0; i < this.template_substitutions.length; i++)
 		{
 			var substitution = this.template_substitutions[i];
 			var substitution_raw = substitution.replace('{', '').replace('}', '');
 
-			while(template.indexOf(substitution) > -1)
+			while(ret.indexOf(substitution) > -1)
 			{
 				//console.log('Substituting `' + substitution_raw + '`');
 
 				switch(substitution_raw)
 				{
 					case "name":
-						template = template.replace(substitution, chance.name());
+						ret = ret.replace(substitution, chance.name());
 						break;
 
 					case "noun":
-						template = template.replace(substitution, this.nouns[this.r(0, this.nouns.length - 1)]);
+						ret = ret.replace(substitution, this.nouns[this.r(0, this.nouns.length - 1)]);
 						break;
 
 					case "adjective":
-						template = template.replace(substitution, this.adjectives[this.r(0, this.adjectives.length - 1)]);
+						ret = ret.replace(substitution, this.adjectives[this.r(0, this.adjectives.length - 1)]);
 						break;
 
 					case "n":
-						template = template.replace(substitution, this.r(0, this.nMax));
+						ret = ret.replace(substitution, this.r(0, this.nMax));
 						break;
 
 					case "n1":
-						template = template.replace(substitution, this.r(1, this.n1Max));
+						ret = ret.replace(substitution, this.r(1, this.n1Max));
 						break;
 
 					default:
-						template = template.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw], useSeed));
+						ret = ret.replace(substitution, this.PickFrom(this.fn_entities[substitution_raw], useSeed));
 						break;
 				}
 			}
 		}
 
-		return template;
+		console.log(ret, template)
+
+		return ret;
 	}
 
 	$(document).ready(function()
