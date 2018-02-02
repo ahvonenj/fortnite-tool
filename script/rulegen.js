@@ -33,26 +33,31 @@ var rulegen = null;
 			"{resources}",
 			"{n}",
 			"{n1}"
-		]
+		];
 	}
 
 	RuleGenerator.prototype.LoadData = function()
 	{
 		var self = this;
 
-		$.get('../res/fn_entities.json', function(data)
+		var def1 = $.get('../res/fn_entities.json', function(data)
 		{
 			self.fn_entities = data;
 		});
 
-		$.get('../res/adjectives1.txt', function(data)
+		var def2 = $.get('../res/adjectives1.txt', function(data)
 		{
 			self.adjectives = data.split('\n');
 		});
 
-		$.get('../res/nouns.txt', function(data)
+		var def3 = $.get('../res/nouns.txt', function(data)
 		{
 			self.nouns = data.split('\n');
+		});
+
+		$.when(def1, def2, def3).then(function()
+		{
+			self.GenerateRuleset();
 		});
 	}
 
@@ -168,9 +173,9 @@ var rulegen = null;
 		return hash;
 	}
 
-	RuleGenerator.prototype.PickFrom = function(set)
+	RuleGenerator.prototype.PickFrom = function(set, forceNoSeed)
 	{
-		if(this.seededRng)
+		if(this.seededRng && (typeof forceNoSeed === 'undefined'  || forceNoSeed === false))
 			var pick = this.seededRng.integer({ min: 0, max: set.length - 1 });
 		else
 			var pick = chance.integer({ min: 0, max: set.length - 1 });
