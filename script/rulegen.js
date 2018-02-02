@@ -180,6 +180,7 @@ var rulegen = null;
 		else
 			var pick = chance.integer({ min: 0, max: set.length - 1 });
 
+		// ! FORCE-CLONE TEMPLATE VALUE !
 		if(typeof set[pick] === 'object')
 			return $.extend(true, {}, set[pick]);
 		else if(typeof set[pick] === 'string')
@@ -229,8 +230,6 @@ var rulegen = null;
 				}
 			}
 		}
-
-		console.log(ret, template)
 
 		return ret;
 	}
