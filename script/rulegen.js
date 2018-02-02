@@ -4,6 +4,8 @@ var rulegen = null;
 {
 	function RuleGenerator()
 	{
+		this.$rulecollection = $('#rule-collection');
+
 		this.fn_entities = null;
 		this.nouns = null;
 		this.adjectives = null;
@@ -97,6 +99,8 @@ var rulegen = null;
 
 	RuleGenerator.prototype.GenerateRuleset = function(hash)
 	{
+		var self = this;
+
 		if(typeof hash === 'undefined')
 		{
 			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates);
@@ -124,11 +128,13 @@ var rulegen = null;
 				ruleset.push(rule);
 			}
 
-			/*console.log(rule_name_template + ' => ' + rule_name + ' (' + rule_hash + ')');
-			console.log(rule_name);
-			console.log(rule_hash, num_rules);*/
+			this.$rulecollection.empty();
+			this.$rulecollection.append('<li class="collection-header"><h5>' + rule_name + ' (' + rule_hash + ')</h5></li>')
 
-			console.log(ruleset);
+			ruleset.forEach(function(r)
+			{
+				self.$rulecollection.append('<li class="collection-item">' + r.rule + '</li>');
+			});
 		}
 		else
 		{
