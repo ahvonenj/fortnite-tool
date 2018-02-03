@@ -118,6 +118,7 @@ var rulegen = null;
 			var num_rules = this.seededRng.integer({ min: 1, max:  6});
 
 			var ruleset = [];
+			var difficulty = 0;
 
 			for(var i = 0; i < num_rules; i++)
 			{
@@ -130,11 +131,12 @@ var rulegen = null;
 					rule = this.GenerateRule(handmade);
 				}
 
+				difficulty += rule.difficulty;
 				ruleset.push(rule);
 			}
 
 			this.$rulecollection.empty();
-			this.$rulecollection.append('<li class="collection-header"><h5>' + rule_name + ' (' + rule_hash + ')</h5></li>')
+			this.$rulecollection.append('<li class="collection-header"><h5>' + rule_name + ' (' + rule_hash + '), Difficulty: ' + difficulty + '%</h5></li>')
 
 			ruleset.forEach(function(r)
 			{

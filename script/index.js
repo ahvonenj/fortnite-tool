@@ -24,6 +24,8 @@ var program = null;
 
 		this.mapImage = null;
 
+		this.random = new Random();
+
 		this.LoadMap();
 	}
 
@@ -71,7 +73,9 @@ var program = null;
 	{
 		var pad = this.width / this.mapPadRatio;
 
-		var randomX = chance.integer(
+		console.log(pad)
+
+		/*var randomX = chance.integer(
 		{
 			min: pad,
 			max: this.width - pad * 2
@@ -81,7 +85,10 @@ var program = null;
 		{
 			min: pad,
 			max: this.height - pad * 2
-		});
+		});*/
+
+		var randomX = this.random.uniform(pad, this.width - pad * 2);
+		var randomY = this.random.uniform(pad, this.height - pad * 2);
 
 		var pixelData = this.ctx.getImageData(randomX + this.markerRad, randomY + this.markerRad, 1, 1).data;
 
@@ -89,7 +96,7 @@ var program = null;
 			  this.tileBlacklist.indexOf(this.PointInWhichTile(randomXoff, randomYoff).join('')) > -1)*/
 		while(pixelData[3] < 255)
 		{
-			var randomX = chance.integer(
+			/*var randomX = chance.integer(
 			{
 				min: pad,
 				max: this.width - pad * 2
@@ -99,7 +106,10 @@ var program = null;
 			{
 				min: pad,
 				max: this.height - pad * 2
-			});
+			});*/
+
+			var randomX = this.random.uniform(pad, this.width - pad * 2);
+			var randomY = this.random.uniform(pad, this.height - pad * 2);
 
 			pixelData = this.ctx.getImageData(randomX + this.markerRad, randomY + this.markerRad, 1, 1).data;
 		}
