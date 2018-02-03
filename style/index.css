@@ -1,0 +1,32 @@
+.fn-marker
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	width: 10px;
+	height: 10px;
+
+	border-radius: 10px;
+
+	background-color: #e53935;
+	background-color: cyan;
+
+	transform-origin: 50% 50%;
+	transform: scale(1.0);
+	transition: all 600ms linear;
+	opacity: 1;
+}
+
+.fn-marker-lg
+{
+	transform-origin: 50% 50%;
+	transform: scale(3.0);
+	transition: all 600ms linear;
+	opacity: 0.5;
+}
+
+#rule-collection
+{
+	min-height: 329px;
+}
