@@ -79,11 +79,11 @@
 
 	"rarities":
 	[
-		"Common",
-		"Uncommon",
-		"Rare",
-		"Epic",
-		"Legendary"
+		"Common (White)",
+		"Uncommon (Green)",
+		"Rare (Blue)",
+		"Epic (Purple)",
+		"Legendary (Gold)"
 	],
 
 	"consumables":
