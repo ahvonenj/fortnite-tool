@@ -29,4 +29,11 @@
 #rule-collection
 {
 	min-height: 329px;
+	background-color: #fff;
 }
+
+/* OVERRIDE */
+
+.collection .collection-item:last-child
+{
+	border-bottom: 1px solid #e0e0e0 !important;
