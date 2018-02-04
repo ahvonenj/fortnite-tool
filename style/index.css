@@ -29,4 +29,20 @@
 #rule-collection
 {
 	min-height: 329px;
+	background-color: #fff;
+}
+
+.collection .collection-item:not(:nth-child(6))
+{
+	border-bottom: 1px solid #e0e0e0 !important;
+}
+
+.collection .collection-item:nth-child(6)
+{
+	border-bottom: none;
+}
+
+#hashchip, #difficultychip
+{
+	float: right;
 }

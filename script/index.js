@@ -73,8 +73,6 @@ var program = null;
 	{
 		var pad = this.width / this.mapPadRatio;
 
-		console.log(pad)
-
 		/*var randomX = chance.integer(
 		{
 			min: pad,
