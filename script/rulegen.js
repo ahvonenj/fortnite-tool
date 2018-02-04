@@ -136,7 +136,9 @@ var rulegen = null;
 			}
 
 			this.$rulecollection.empty();
-			this.$rulecollection.append('<li class="collection-header"><h5>' + rule_name + ' (' + rule_hash + '), Difficulty: ' + difficulty + '%</h5></li>')
+			this.$rulecollection.append('<li class="collection-header"><h5>' + rule_name + '</h5></li>'); 
+			$('#hashchip').text('Hash: ' + rule_hash);
+			$('#difficultychip').text('Difficulty: ' + difficulty + '%');
 
 			ruleset.forEach(function(r)
 			{
