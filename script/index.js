@@ -177,7 +177,7 @@ var program = null;
 
 	Program.prototype.RandomNamedLocation = function()
 	{
-		//this.ClearMarkers();
+		this.ClearMarkers();
 
 		var loc = this.namedLocations[chance.integer({ min: 0, max: this.namedLocations.length - 1 })];
 
@@ -190,7 +190,7 @@ var program = null;
 
 	Program.prototype.RandomExtraLocation = function()
 	{
-		//this.ClearMarkers();
+		this.ClearMarkers();
 
 		var loc = this.extraLocations[chance.integer({ min: 0, max: this.extraLocations.length - 1 })];
 
@@ -203,7 +203,7 @@ var program = null;
 
 	Program.prototype.RandomNamedOrExtraLocation = function()
 	{
-		//this.ClearMarkers();
+		this.ClearMarkers();
 
 		var collection = this.namedLocations.concat(this.extraLocations);
 
