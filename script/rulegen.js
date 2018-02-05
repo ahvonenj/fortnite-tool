@@ -7,6 +7,8 @@ var rulegen = null;
 		this.$rulecollection = $('#rule-collection');
 		this.$rulecountrange = $('#rulecountrange');
 		this.$ruledifficultyrange = $('#ruledifficultyrange');
+		this.$lastgenerated = $('#lastgenerated');
+
 
 		this.rulecount = noUiSlider.create(this.$rulecountrange[0], 
 		{
@@ -170,10 +172,15 @@ var rulegen = null;
 			$('#hashchip').text('Hash: ' + rule_hash);
 			$('#difficultychip').text('Difficulty: ' + difficulty + '%');
 
+			var toSave = '';
+
 			ruleset.forEach(function(r)
 			{
 				self.$rulecollection.append('<li class="collection-item">' + r.rule + '</li>');
+				toSave += '<li class="collection-item">' + r.rule + '</li>';
 			});
+
+			this.SaveRuleset(rule_name, rule_hash, difficulty, toSave);
 		}
 		else
 		{
@@ -183,6 +190,23 @@ var rulegen = null;
 
 			console.log(hash, num_rules)
 		}
+	}
+
+	RuleGenerator.prototype.SaveRuleset = function(rulename, rulehash, difficulty, collection)
+	{
+		this.$lastgenerated.append('<div class = "card-panel white">' +
+		'<ul class="collection with-header">' +
+		'<li class="collection-header"><h5>' + rulename + '</h5></li>' +
+		collection +
+		'</ul>' +
+		'&nbsp;' +
+		'<div class="chip right">' +
+		'Hash: ' + rulehash +
+		'</div>' +
+		'<div class="chip right">' +
+		'Difficulty: ' + difficulty + '%' +
+		'</div>' +
+		'</div>');
 	}
 
 	RuleGenerator.prototype.r = function(min, max)
