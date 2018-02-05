@@ -52,18 +52,46 @@
 						</div>
 						<div class="card-content white-text">
 							<span class="card-title">Randomize a drop point</span>
-							<a class="waves-effect waves-light btn" onclick = "program.RandomizePoint()">Exact</a>
-							<a class="waves-effect waves-light btn" onclick = "program.ClearMarkers()">Clear</a>
+							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomizePoint()">Exact</a>
+							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomNamedLocation()">City</a>
+							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomExtraLocation()">Extra</a>
+							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomNamedOrExtraLocation()">City + Extra</a>
+							<a class="waves-effect waves-light btn  red" onclick = "program.ClearMarkers()">Clear</a>
 							<!--<a class="waves-effect waves-light btn" onclick = "program.RandomizeTile()">Tile</a>-->
 						</div>
 					</div>
 				</div>
 				<div class="col s3">
-					<div class="card red">
+					<div class="card blue accent-2">
 						<div class="card-content white-text">
-							<span class="card-title white-text">Note</span>
+							<span class="card-title white-text">Exact</span>
 							<p>
-								Currently the generator can only generate exact (x, y) points. This will be changed later so that you are able to generate random named location spawnpoints and more.
+								Exact option generates you a completely random (x, y) drop point location.
+							</p>
+						</div>
+					</div>
+					<div class="card blue accent-2">
+						<div class="card-content white-text">
+							<span class="card-title white-text">City</span>
+							<p>
+								City option chooses a random drop point from all available cities / named locations.
+							</p>
+						</div>
+					</div>
+					<div class="card blue accent-2">
+						<div class="card-content white-text">
+							<span class="card-title white-text">Extra</span>
+							<p>
+								Extra option chooses a random point from unnamed locations of interest.
+							</p>
+						</div>
+					</div>
+
+					<div class="card blue accent-2">
+						<div class="card-content white-text">
+							<span class="card-title white-text">City + Extra</span>
+							<p>
+								City + Extra -option is a combination of City and Extra -options.
 							</p>
 						</div>
 					</div>
