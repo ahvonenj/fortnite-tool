@@ -33,12 +33,20 @@
 		<nav>
 			<div class="nav-wrapper">
 				<a href="#" class="brand-logo right">Fortniter</a>
+				<a href="#" data-activates="mobiled" class="button-collapse"><i class="material-icons">menu</i></a>
+
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li class="active"><a href="index.html">Home</a></li>
 					<li><a href="pages/droppoint.html">Drop Point Generator</a></li>
 					<li><a href="pages/rulegenerator.html">Rule Generator</a></li>
 					<li><a href="pages/challenges.html">Challenges</a></li>
 				</ul>
+				<ul class="side-nav" id="mobiled">
+			        <li class="active"><a href="index.html">Home</a></li>
+					<li><a href="pages/droppoint.html">Drop Point Generator</a></li>
+					<li><a href="pages/rulegenerator.html">Rule Generator</a></li>
+					<li><a href="pages/challenges.html">Challenges</a></li>
+			    </ul>
 			</div>
 		</nav>
 
@@ -54,5 +62,8 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			 $(".button-collapse").sideNav();
+		</script>
 	</body>
 </html>
