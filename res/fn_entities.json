@@ -66,24 +66,30 @@
 		"Semi-Auto Sniper Rifle",
 		"Pump Shotgun",
 		"Assault Shotgun",
+		"Assault Rifle",
 		"Silenced Pistol",
 		"Tactical SMG",
-		"Melee Weapon",
 		"Grenade Launcher",
 		"Rocket Launcher",
-		"Grenade",
-		"Boogie Bomb",
 		"Burst Assault Rifle",
-		"Revolver"
+		"Revolver",
+		"Crossbow",
+		"Minigun"
+	],
+
+	"throwables":
+	[
+		"Grenade",
+		"Boogie Bomb"
 	],
 
 	"rarities":
 	[
-		"Common",
-		"Uncommon",
-		"Rare",
-		"Epic",
-		"Legendary"
+		"Common (White)",
+		"Uncommon (Green)",
+		"Rare (Blue)",
+		"Epic (Purple)",
+		"Legendary (Gold)"
 	],
 
 	"consumables":
@@ -152,6 +158,74 @@
 		"Stone",
 		"Metal"
 	],
+
+	"combination_whitelist":
+	{
+		"Common (White)":
+		[
+			"Pistol",
+			"SMG",
+			"Pump Shotgun",
+			"Assault Rifle",
+			"Tactical SMG",
+			"Burst Assault Rifle",
+			"Revolver"
+		],
+
+		"Uncommon (Green)":
+		[
+			"Pistol",
+			"SMG",
+			"Pump Shotgun",
+			"Assault Shotgun",
+			"Assault Rifle",
+			"Tactical SMG",
+			"Burst Assault Rifle",
+			"Revolver"
+		],
+
+		"Rare (Blue)":
+		[
+			"Scoped Assault Rifle",
+			"Pistol",
+			"SMG",
+			"Sniper Rifle",
+			"Assault Shotgun",
+			"Assault Rifle",
+			"Tactical SMG",
+			"Grenade Launcher",
+			"Rocket Launcher",
+			"Burst Assault Rifle",
+			"Crossbow"
+		],
+
+		"Epic (Purple)":
+		[
+			"Scoped Assault Rifle",
+			"Sniper Rifle",
+			"Semi-Auto Sniper Rifle",
+			"Assault Shotgun",
+			"Assault Rifle",
+			"Silenced Pistol",
+			"Tactical SMG",
+			"Grenade Launcher",
+			"Rocket Launcher",
+			"Crossbow",
+			"Minigun"
+		],
+
+		"Legendary (Gold)":
+		[
+			"Sniper Rifle",
+			"Semi-Auto Sniper Rifle",
+			"Assault Rifle",
+			"Silenced Pistol",
+			"Grenade Launcher",
+			"Rocket Launcher",
+			"Crossbow",
+			"Minigun"
+		]
+	},
 
 	"rule_groups":
 	{
@@ -294,11 +368,11 @@
 			"limit": 1,
 		 	"difficulty": 25
 		},
-		{
-		 	"rule": "Player(s) cannot use {rarities} rarity weapons",
-		 	"rule_id": "t12",
-		 	"limit": 1,
-		 	"difficulty": 30
+		{ 
+			"rule": "Player(s) cannot use {throwables}",
+			"rule_id": "t12",
+			"limit": 2,
+		 	"difficulty": 10
 		}
 	]
 }

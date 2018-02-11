@@ -44,5 +44,30 @@
 
 #hashchip, #difficultychip
 {
-	float: right;
+	/*float: right;*/
+}
+
+#rulecountrange
+{
+    clear: both;
+	width: 150px;
+}
+
+#rulecountrange + label
+{
+	position: relative;
+    top: -14px;
+    left: 170px;
+}
+
+#ruledifficultyrange
+{
+	clear: both;
+	width: 150px;
+}
+
+label[for="ruledifficultyrange"]
+{
+	position: relative;
+	left: 16px;
 }

@@ -10,30 +10,30 @@
 
 			gtag('config', 'UA-113530020-1');
 		</script>
-
-		<title>Fortniter - Drop Point</title>
+		
+		<title>Fortniter - Challenges</title>
 		<meta charset="UTF-8">
 		<meta name="description" content="Fortniter is a set of tools for Epic Games' Fortnite, with the aim to make games more interesting by providing players with different challenges and other cool mutators.">
   		<meta name="keywords" content="fortnite,challenge,tool,random,rule,drop,point,droppoint,generator,chooser,picker,fort,nite,reddit,br,battle,royale,fornitebr">
 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<link type="text/css" rel="stylesheet" href="../style/lib/nouislider.css"  media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="../style/lib/materialize.min.css"  media="screen,projection"/>
+		
 
 		<link type="text/css" rel="stylesheet" href="../style/index.css"/>
 
 		<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 		<script type="text/javascript" src="../script/lib/materialize.min.js"></script>
+		<script type="text/javascript" src="../script/lib/nouislider.js"></script>
 		<script src="../script/lib/chance.min.js"></script>
-		<script src="../script/lib/sim-0.26.js"></script>
-
-		<script type="text/javascript" src="../script/index.js"></script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
 		<nav>
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo right">Fortniter - Drop Point</a>
+				<a href="#" class="brand-logo right">Fortniter - Challenges</a>
 				<a href="#" data-activates="mobiled" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="../index.html">Home</a></li>
@@ -52,60 +52,54 @@
 			</div>
 		</nav>
 
-		
-			<div class="row">
-				<div class="col">
-					<div class="card blue">
-						<div class="card-image">
-							<canvas id = "fn-map" width = "650" height = "650"></canvas>
-						</div>
-						<div class="card-content white-text">
-							<span class="card-title">Randomize a drop point</span>
-							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomizePoint()">Exact</a>
-							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomNamedLocation()">City</a>
-							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomExtraLocation()">Extra</a>
-							<a class="waves-effect waves-light btn cyan" onclick = "program.RandomNamedOrExtraLocation()">City + Extra</a>
-							<a class="waves-effect waves-light btn  red" onclick = "program.ClearMarkers()">Clear</a>
-							<!--<a class="waves-effect waves-light btn" onclick = "program.RandomizeTile()">Tile</a>-->
-						</div>
+		<div class="row">
+			<div class="col s3">
+				<div class="card blue">
+					<div class="card-content">
+						<span class="card-title white-text">Challenges</span>
+						<p class="white-text">
+							Challenges are predefined and handmade sets of special rules to really up the ante. These challenges can be very hard, require special conditions to complete or they could be almost impossible. Tread carefully.
+						</p>
 					</div>
 				</div>
-				<div class="col s3">
-					<div class="card blue accent-2">
-						<div class="card-content white-text">
-							<span class="card-title white-text">Exact</span>
-							<p>
-								Exact option generates you a completely random (x, y) drop point location.
-							</p>
-						</div>
+			</div>
+			<div class="col s3">
+				<div class="card red">
+					<div class="card-content">
+						<span class="card-title white-text">Note</span>
+						<p class="white-text">
+							This section is unfinished.
+						</p>
 					</div>
-					<div class="card blue accent-2">
-						<div class="card-content white-text">
-							<span class="card-title white-text">City</span>
-							<p>
-								City option chooses a random drop point from all available cities / named locations.
-							</p>
-						</div>
-					</div>
-					<div class="card blue accent-2">
-						<div class="card-content white-text">
-							<span class="card-title white-text">Extra</span>
-							<p>
-								Extra option chooses a random point from unnamed locations of interest.
-							</p>
-						</div>
-					</div>
+				</div>
+			</div>
+		</div>
 
-					<div class="card blue accent-2">
-						<div class="card-content white-text">
-							<span class="card-title white-text">City + Extra</span>
-							<p>
-								City + Extra -option is a combination of City and Extra -options.
-							</p>
+		<div class="row">
+			<div class="col s6">
+				<div class="card blue">
+					<div class="card-content">
+						<span class="card-title white-text">Challenge 1</span>
+
+						<div class="card-panel blue lighten-2">
+							<span class="white-text">
+								Challenge description
+							</span>
+						</div>
+
+						<ul class="collection with-header" id = "rule-collection">
+							<li class="collection-item">Rule 1</li>
+					    </ul>
+
+					    &nbsp;
+
+						<div class="chip right" id = "difficultychip">
+							Difficulty: -
 						</div>
 					</div>
 				</div>
 			</div>
+		</div>
 		<script>
 			 $(".button-collapse").sideNav();
 		</script>

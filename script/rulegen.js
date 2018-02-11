@@ -5,6 +5,27 @@ var rulegen = null;
 	function RuleGenerator()
 	{
 		this.$rulecollection = $('#rule-collection');
+		this.$rulecountrange = $('#rulecountrange');
+		this.$ruledifficultyrange = $('#ruledifficultyrange');
+		this.$lastgenerated = $('#lastgenerated');
+
+
+		this.rulecount = noUiSlider.create(this.$rulecountrange[0], 
+		{
+			start: [1, 6],
+			connect: true,
+			step: 1,
+			orientation: 'horizontal', // 'horizontal' or 'vertical'
+			range: 
+			{
+				'min': 1,
+				'max': 6
+			},
+			format: wNumb(
+			{
+				decimals: 0
+			})
+		});
 
 		this.fn_entities = null;
 		this.nouns = null;
@@ -12,6 +33,7 @@ var rulegen = null;
 
 		this.nMax = 3;
 		this.n1Max = 3;
+		this.rulesMin = 1;
 		this.rulesMax = 6;
 
 		this.seededRng = null;
@@ -34,6 +56,14 @@ var rulegen = null;
 			"{n}",
 			"{n1}"
 		];
+	}
+
+	RuleGenerator.prototype.SetRuleSettings = function()
+	{
+		this.rulesMin = parseInt(this.rulecount.get()[0]);
+		this.rulesMax = parseInt(this.rulecount.get()[1]);
+		//this.nMax = parseInt(this.$ruledifficultyrange.val());
+		//this.n1Max = parseInt(this.$ruledifficultyrange.val());
 	}
 
 	RuleGenerator.prototype.LoadData = function()
@@ -108,6 +138,8 @@ var rulegen = null;
 
 		if(typeof hash === 'undefined')
 		{
+			this.SetRuleSettings();
+
 			var rule_name_template = this.PickFrom(this.fn_entities.ruleset_naming.templates, true);
 			var rule_name = this.ParseTemplate(rule_name_template, false);
 			var rule_hash = this.Hash(rule_name);
@@ -115,7 +147,7 @@ var rulegen = null;
 			// Seed further generation with hash
 			this.seededRng = new Chance(rule_hash);
 
-			var num_rules = this.seededRng.integer({ min: 1, max:  6});
+			var num_rules = this.seededRng.integer({ min: this.rulesMin, max: this.rulesMax});
 
 			var ruleset = [];
 			var difficulty = 0;
@@ -140,10 +172,15 @@ var rulegen = null;
 			$('#hashchip').text('Hash: ' + rule_hash);
 			$('#difficultychip').text('Difficulty: ' + difficulty + '%');
 
+			var toSave = '';
+
 			ruleset.forEach(function(r)
 			{
 				self.$rulecollection.append('<li class="collection-item">' + r.rule + '</li>');
+				toSave += '<li class="collection-item">' + r.rule + '</li>';
 			});
+
+			this.SaveRuleset(rule_name, rule_hash, difficulty, toSave);
 		}
 		else
 		{
@@ -153,6 +190,23 @@ var rulegen = null;
 
 			console.log(hash, num_rules)
 		}
+	}
+
+	RuleGenerator.prototype.SaveRuleset = function(rulename, rulehash, difficulty, collection)
+	{
+		this.$lastgenerated.append('<div class = "card-panel white">' +
+		'<ul class="collection with-header">' +
+		'<li class="collection-header"><h5>' + rulename + '</h5></li>' +
+		collection +
+		'</ul>' +
+		'&nbsp;' +
+		'<div class="chip right">' +
+		'Hash: ' + rulehash +
+		'</div>' +
+		'<div class="chip right">' +
+		'Difficulty: ' + difficulty + '%' +
+		'</div>' +
+		'</div>');
 	}
 
 	RuleGenerator.prototype.r = function(min, max)

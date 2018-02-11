@@ -1,9 +1,19 @@
 <!doctype html>
 <html>
 	<head>
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-113530020-1"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'UA-113530020-1');
+		</script>
+
 		<title>Fortniter</title>
 		<meta charset="UTF-8">
-		<meta name="description" content="Fortniter - Challenge yourself">
+		<meta name="description" content="Fortniter is a set of tools for Epic Games' Fortnite, with the aim to make games more interesting by providing players with different challenges and other cool mutators.">
   		<meta name="keywords" content="fortnite,challenge,tool,random,rule,drop,point,droppoint,generator,chooser,picker,fort,nite,reddit,br,battle,royale,fornitebr">
 
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,11 +33,22 @@
 		<nav>
 			<div class="nav-wrapper">
 				<a href="#" class="brand-logo right">Fortniter</a>
+				<a href="#" data-activates="mobiled" class="button-collapse"><i class="material-icons">menu</i></a>
+
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
-					<li><a href="index.html">Home</a></li>
-					<li><a href="pages/droppoint.html">Drop point</a></li>
-					<li><a href="pages/rulegenerator.html">Rule generator</a></li>
+					<li class="active"><a href="index.html">Home</a></li>
+					<li><a href="pages/news.html">News</a></li>
+					<li><a href="pages/droppoint.html">Drop Point Generator</a></li>
+					<li><a href="pages/rulegenerator.html">Rule Generator</a></li>
+					<li><a href="pages/challenges.html">Challenges</a></li>
 				</ul>
+				<ul class="side-nav" id="mobiled">
+			        <li class="active"><a href="index.html">Home</a></li>
+			        <li><a href="pages/news.html">News</a></li>
+					<li><a href="pages/droppoint.html">Drop Point Generator</a></li>
+					<li><a href="pages/rulegenerator.html">Rule Generator</a></li>
+					<li><a href="pages/challenges.html">Challenges</a></li>
+			    </ul>
 			</div>
 		</nav>
 
@@ -43,5 +64,8 @@
 				</div>
 			</div>
 		</div>
+		<script>
+			 $(".button-collapse").sideNav();
+		</script>
 	</body>
 </html>

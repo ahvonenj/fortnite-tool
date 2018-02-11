@@ -26,6 +26,53 @@ var program = null;
 
 		this.random = new Random();
 
+		this.namedLocations = 
+		[
+			{ x: 125.75, y: 75.5 },
+			{ x: 337.75, y: 140.5 },
+			{ x: 94.75, y: 151.5 },
+			{ x: 531.75, y: 190.5 },
+			{ x: 182.75, y: 184.5 },
+			{ x: 429.75, y: 204.5 },
+			{ x: 282.75, y: 240.5 },
+			{ x: 581.75, y: 279.5 },
+			{ x: 55.75, y: 300.5 },
+			{ x: 377.75, y: 292.5 },
+			{ x: 235.75, y: 327.5 },
+			{ x: 481.75, y: 344.5 },
+			{ x: 141.75, y: 402.5 },
+			{ x: 370.75, y: 399.5 },
+			{ x: 235.75, y: 405.5 },
+			{ x: 386.75, y: 487.5 },
+			{ x: 538.75, y: 518.5 },
+			{ x: 228.75, y: 555.5 }
+		]
+
+		this.extraLocations = 
+		[
+			{x: 491.75, y: 474.5 },
+			{x: 279.75, y: 528.5 },
+			{x: 330.75, y: 560.5 },
+			{x: 268.75, y: 451.5 },
+			{x: 232.75, y: 477.5 },
+			{x: 151.75, y: 312.5 },
+			{x: 165.75, y: 263.5 },
+			{x: 93.75, y: 333.5 },
+			{x: 104.75, y: 258.5 },
+			{x: 273.75, y: 403.5 },
+			{x: 404.75, y: 343.5 },
+			{x: 324.75, y: 457.5 },
+			{x: 470.75, y: 261.5 },
+			{x: 257.75, y: 111.5 },
+			{x: 170.75, y: 109.5 },
+			{x: 405.75, y: 151.5 },
+			{x: 480.75, y: 124.5 },
+			{x: 44.75, y: 358.5 },
+			{x: 582.75, y: 397.5 },
+			{x: 540.75, y: 320.5 },
+			{x: 525.75, y: 401.5 }
+		]
+
 		this.LoadMap();
 	}
 
@@ -128,6 +175,47 @@ var program = null;
 		this.markerCount++;
 	}
 
+	Program.prototype.RandomNamedLocation = function()
+	{
+		this.ClearMarkers();
+
+		var loc = this.namedLocations[chance.integer({ min: 0, max: this.namedLocations.length - 1 })];
+
+		this.ctx.beginPath();
+		this.ctx.arc(loc.x, loc.y, 6, 0, 2 * Math.PI);
+		this.ctx.fillStyle = 'cyan';
+      	this.ctx.fill();
+		this.ctx.stroke();
+	}
+
+	Program.prototype.RandomExtraLocation = function()
+	{
+		this.ClearMarkers();
+
+		var loc = this.extraLocations[chance.integer({ min: 0, max: this.extraLocations.length - 1 })];
+
+		this.ctx.beginPath();
+		this.ctx.arc(loc.x, loc.y, 6, 0, 2 * Math.PI);
+		this.ctx.fillStyle = 'cyan';
+      	this.ctx.fill();
+		this.ctx.stroke();
+	}
+
+	Program.prototype.RandomNamedOrExtraLocation = function()
+	{
+		this.ClearMarkers();
+
+		var collection = this.namedLocations.concat(this.extraLocations);
+
+		var loc = collection[chance.integer({ min: 0, max: collection.length - 1 })];
+
+		this.ctx.beginPath();
+		this.ctx.arc(loc.x, loc.y, 6, 0, 2 * Math.PI);
+		this.ctx.fillStyle = 'cyan';
+      	this.ctx.fill();
+		this.ctx.stroke();
+	}
+
 	Program.prototype.RandomizeTile = function()
 	{
 
@@ -166,7 +254,14 @@ var program = null;
 	$(document).on('click', function(e)
 	{
 		//program.PointInWhichTile(e.clientX, e.clientY)
+		var rect = program.$canvas.getBoundingClientRect();
+		var x = e.clientX - rect.left;
+		var y = e.clientY - rect.top;
+
+		console.log('{x: ' + x + ', y: ' + y + '},')
 	});
+
+
 
 	$(document).ready(function()
 	{
