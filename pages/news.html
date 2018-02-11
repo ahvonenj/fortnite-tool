@@ -11,7 +11,7 @@
 			gtag('config', 'UA-113530020-1');
 		</script>
 		
-		<title>Fortniter - Rule Generator</title>
+		<title>Fortniter - News</title>
 		<meta charset="UTF-8">
 		<meta name="description" content="Fortniter is a set of tools for Epic Games' Fortnite, with the aim to make games more interesting by providing players with different challenges and other cool mutators.">
   		<meta name="keywords" content="fortnite,challenge,tool,random,rule,drop,point,droppoint,generator,chooser,picker,fort,nite,reddit,br,battle,royale,fornitebr">
@@ -28,71 +28,54 @@
 		<script type="text/javascript" src="../script/lib/nouislider.js"></script>
 		<script src="../script/lib/chance.min.js"></script>
 
-		<script type="text/javascript" src="../script/rulegen.js"></script>
-
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 	</head>
 	<body>
 		<nav>
 			<div class="nav-wrapper">
-				<a href="#" class="brand-logo right">Fortniter - Rule Generator</a>
+				<a href="#" class="brand-logo right">Fortniter - News</a>
 				<a href="#" data-activates="mobiled" class="button-collapse"><i class="material-icons">menu</i></a>
 				<ul id="nav-mobile" class="left hide-on-med-and-down">
 					<li><a href="../index.html">Home</a></li>
-					<li><a href="news.html">News</a></li>
+					<li class="active"><a href="news.html">News</a></li>
 					<li><a href="droppoint.html">Drop Point Generator</a></li>
 					<li><a href="rulegenerator.html">Rule Generator</a></li>
-					<li class="active"><a href="challenges.html">Challenges</a></li>
+					<li><a href="challenges.html">Challenges</a></li>
 				</ul>
 				<ul class="side-nav" id="mobiled">
 			        <li><a href="../index.html">Home</a></li>
-			        <li><a href="news.html">News</a></li>
+			        <li class="active"><a href="news.html">News</a></li>
 					<li><a href="droppoint.html">Drop Point Generator</a></li>
 					<li><a href="rulegenerator.html">Rule Generator</a></li>
-					<li class="active"><a href="challenges.html">Challenges</a></li>
+					<li><a href="challenges.html">Challenges</a></li>
 			    </ul>
 			</div>
 		</nav>
 
 		<div class="row">
-			<div class="col s6">
+			<div class="col s3">
 				<div class="card blue">
 					<div class="card-content">
-						<span class="card-title white-text">Generate a random ruleset</span>
-						<ul class="collection with-header" id = "rule-collection">
-
-					    </ul>
-
-						<div class="card-panel white">
-
-							<div id="rulecountrange"></div>
-							<label for="rulecountrange">Num. Rules</label>
-
-							<!--<p class="range-field">
-								<input type="range" id="ruledifficultyrange" min="1" max="3" value="2"/>
-								<label for="ruledifficultyrange">N-Rule Difficulty</label>
-							</p>-->
-						</div>
-
-						<a class="waves-effect waves-light btn cyan" onclick = "rulegen.GenerateRuleset()">Generate</a>
-
-						<div class="chip right" id = "hashchip">
-							Hash: -
-						</div>
-						<div class="chip right" id = "difficultychip">
-							Difficulty: -
-						</div>
+						<span class="card-title white-text">News</span>
+						<p class="white-text">
+							News regarding Fortniter will appear here.
+						</p>
 					</div>
 				</div>
 			</div>
+		</div>
 
+		<div class="row">
 			<div class="col s6">
 				<div class="card blue">
-					<div class="card-content" id = "lastgenerated">
-						<span class="card-title white-text">Last generated</span>
+					<div class="card-content">
+						<span class="card-title white-text">Weapons category updated</span>
 
-						
-
+						<div class="card-panel blue lighten-2">
+							<span class="white-text">
+								Added minigun and crossbow to the weapons list.
+							</span>
+						</div>
 					</div>
 				</div>
 			</div>
