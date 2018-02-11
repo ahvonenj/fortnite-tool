@@ -46,6 +46,7 @@ var rulegen = null;
 			"{doomify}",
 			"{gauntlets}",
 			"{weapons}",
+			"{throwables}",
 			"{consumables}",
 			"{placeables}",
 			"{buildings}",
